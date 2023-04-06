@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SpecShow.Models.Favourite>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.UserID
+            </td>
+            <td>
+                @item.MobileID
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="removeFavourite(@item.FavouritesID)">Remove from favorites</button>
+                <a asp-controller="Home" asp-action="Details" asp-route-id="@item.MobileID">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+@section scripts {
+    <script>
+        function removeFavourite(favouritesId) {
+            $.ajax({
+                type: "POST",
+                url: "/Favourites/RemoveFavourite",
+                data: { favouritesId: favouritesId },
+                success:function (data) {
+                    if (data.success) {
+                        // Reload the favorites view
+                        $('body').load('@Url.Action("Index", "Favourites")');
+                    } else {
+                        alert('Failed to remove mobile from favorites. suc');
+                    }
+                },
+                error: function () {
+                    alert('Failed to remove mobile from favorites.');
+                }
+            });
+        }
+    </script>
+}
+
+

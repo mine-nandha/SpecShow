@@ -1,0 +1,215 @@
+﻿@model IEnumerable<SpecShow.Models.Mobile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmazonUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlipkartUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScreenSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FrontCamera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BackCameras)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sensors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatteryCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Colors)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Variants)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResistanceCertificate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScreenType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspectRatio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resolution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherFeatures)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Processor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nanometer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AntutuScores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bluetooth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChargingCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmazonUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlipkartUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScreenSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrontCamera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BackCameras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sensors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatteryCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colors)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Variants)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Material)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResistanceCertificate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScreenType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspectRatio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resolution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherFeatures)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Processor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nanometer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPU)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AntutuScores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bluetooth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChargingCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MobileID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MobileID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MobileID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
