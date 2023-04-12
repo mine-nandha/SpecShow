@@ -7,7 +7,6 @@ namespace SpecShow.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Mobile> Mobiles { get; set; }
-        public DbSet<Brand> Brands { get; set; }
         public DbSet<Favourite> Favourites { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -17,9 +16,8 @@ namespace SpecShow.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Mobile>().ToTable("Mobile");
-            modelBuilder.Entity<Brand>().ToTable("Brand");
+            modelBuilder.Entity<User>().ToTable("User").HasIndex(u => u.UserName).IsUnique();
+			modelBuilder.Entity<Mobile>().ToTable("Mobile");
             modelBuilder.Entity<Favourite>().ToTable("Favourite");
         }
     }

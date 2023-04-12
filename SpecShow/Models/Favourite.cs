@@ -11,10 +11,10 @@ namespace SpecShow.Models
 
         [ForeignKey("User")]
         public int UserID { get; set; }
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
 
         [ForeignKey("Mobile")]
         public int MobileID { get; set; }
-        public virtual Mobile Mobile { get; set; }
+        public virtual Mobile? Mobile { get; set; }
     }
 }

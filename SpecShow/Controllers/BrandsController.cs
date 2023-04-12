@@ -22,50 +22,48 @@ namespace SpecShow.Controllers
         // GET: Brands
         public async Task<IActionResult> Index()
         {
-              return _context.Brands != null ? 
-                          View(await _context.Brands.ToListAsync()) :
-                          Problem("Entity set 'SpecShowContext.Brands'  is null.");
+              return View(await _context.Mobiles.Select(m=>m.Brand).Distinct().ToListAsync());
         }
 
 		// GET: Brands/Samsung
-		public async Task<IActionResult> Samsung()
+		public IActionResult Samsung()
 		{
-			return View(_context.Mobiles.Where(m => m.Brand == "Samsung").ToListAsync());
+			return RedirectToAction("Index","Home", new { search = "Samsung"});
 		}
 		// GET: Brands/Samsung
-		public async Task<IActionResult> Apple()
+		public IActionResult Apple()
 		{
-			return View(_context.Mobiles.Where(m => m.Brand == "Apple").ToListAsync());
+			return RedirectToAction("Index","Home", new { search = "Apple" });
 		}
 		// GET: Brands/Samsung
-		public async Task<IActionResult> Nokia()
+		public IActionResult Nokia()
 		{
-			return View(_context.Mobiles.Where(m => m.Brand == "Nokia").ToListAsync());
+			return RedirectToAction("Index","Home", new { search = "Nokia" });
 		}
 		// GET: Brands/Samsung
-		public async Task<IActionResult> Redmi()
+		public IActionResult Redmi()
 		{
-			return View(_context.Mobiles.Where(m => m.Brand == "Redmi").ToListAsync());
+			return RedirectToAction("Index","Home", new { search = "Redmi" });
 		}
 		// GET: Brands/Samsung
-		public async Task<IActionResult> OnePlus()
+		public IActionResult OnePlus()
 		{
-			return View(_context.Mobiles.Where(m => m.Brand == "OnePlus").ToListAsync());
+			return RedirectToAction("Index","Home", new { search = "OnePlus" });
 		}
 		// GET: Brands/Samsung
-		public async Task<IActionResult> Vivo()
+		public IActionResult Vivo()
 		{
-			return View(_context.Mobiles.Where(m => m.Brand == "Vivo").ToListAsync());
+			return RedirectToAction("Index","Home", new { search = "Vivo" });
 		}
 		// GET: Brands/Samsung
-		public async Task<IActionResult> Oppo()
+		public IActionResult Oppo()
 		{
-			return View(_context.Mobiles.Where(m => m.Brand == "Oppo").ToListAsync());
+			return RedirectToAction("Index","Home", new { search = "Oppo" });
 		}
 		// GET: Brands/Samsung
-		public async Task<IActionResult> Realme()
+		public IActionResult Realme()
 		{
-			return View(_context.Mobiles.Where(m => m.Brand == "Realme").ToListAsync());
+			return RedirectToAction("Index","Home", new { search = "Realme" });
 		}
 
 

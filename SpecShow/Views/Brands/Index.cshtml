@@ -1,41 +1,39 @@
-﻿@model IEnumerable<SpecShow.Models.Brand>
+﻿@model IEnumerable<string>
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LogoURL)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LogoURL)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BrandID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BrandID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BrandID">Delete</a>
-            </td>
-        </tr>
+@section status{
+	@if (ViewContext.HttpContext.Session.GetInt32("UserID") != null)
+	{
+		<li class="nav-item" style="padding-left:2rem;">
+			<a class="nav-link" asp-area="" asp-controller="Users" asp-action="Logout" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"><i class="fa-solid fa-person-running fa-xl"></i></a>
+		</li>
+	}
+	else
+	{
+		<li class="nav-item" style="padding-left:2rem;">
+			<a class="nav-link" asp-area="" asp-controller="Users" asp-action="Login" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Log In/Sign Up"><i class="fa-solid fa-user-plus"></i></a>
+		</li>
+	}
 }
-    </tbody>
-</table>
+<h1 style="text-align:center">View By Brands</h1>
+
+<div class="row" style="padding-top: 2rem;">
+	@foreach (var name in Model)
+	{
+		<div class="col-sm-6 col-md-4 col-lg-3 mb-4 hover-zoom">
+			<a asp-action="@name">
+				<div class="card shadow" style="height: 0; padding-bottom: 100%;">
+					@{
+						string url = "/img/" + name + ".png";
+					}
+					<img class="card-img-top" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; width: 100%; height: 100%; object-fit:contain" src="@url" alt="@name image">
+					<div class="card-body">
+						<h5 class="card-title">@name</h5>
+					</div>
+				</div>
+			</a>
+		</div>
+	}
+</div>
