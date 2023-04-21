@@ -1,4 +1,5 @@
-﻿@model SpecShow.Models.Mobile
+﻿@using Microsoft.EntityFrameworkCore
+@model SpecShow.Models.Mobile
 
 @{
 	ViewData["Title"] = @Html.DisplayFor(model => model.MobileName);
@@ -244,19 +245,57 @@
 <div>
 	@if (ViewContext.HttpContext.Session.GetInt32("UserID") != null)
 	{
-		<button type="button" class="btn btn-primary" onclick="addFavourite(@Model.MobileID)">Add to favorites</button>
+		@if ((bool)ViewBag.isExists)
+		{
+			<button type="button" class="btn btn-danger" onclick="removeFavourite(@Model.MobileID, this)">Remove from favorites</button>
+		}
+		else
+		{
+			<button type="button" class="btn btn-primary" onclick="addFavourite(@Model.MobileID, this)">Add to favorites</button>
+		}
 	}
 	<a asp-action="Index">Back to List</a>
 </div>
 
 @section scripts {
 	<script>
-		function addFavourite(mobileId) {
+		function addFavourite(mobileId, button) {
 			console.log(mobileId);
 			$.ajax({
 				type: "POST",
 				url: "/Favourites/AddFavourite",
-				data: { mobileId: mobileId }
+				data: { mobileId: mobileId },
+				success: function () {
+					button.textContent = "Remove from favorites";
+					button.classList.remove("btn-primary");
+					button.classList.add("btn-danger");
+					button.onclick = function () { removeFavourite(mobileId, button); };
+					updateFavoritesCount();
+				}
+			});
+		}
+		function updateFavoritesCount() {
+			// send AJAX request to get favorites count from server
+			$.get("/Favourites/GetCount", function (count) {
+				if (count > 0) {
+					$("#fav-count").text(count).show(); // update and show the span element if count is greater than zero
+				} else {
+					$("#fav-count").hide(); // hide the span element if count is zero
+				} // update the span element with count
+			});
+		}
+		function removeFavourite(mobileId, button) {
+			console.log(mobileId);
+			$.ajax({
+				type: "POST",
+				url: "/Favourites/RemoveFavourite",
+				data: { mobileId: mobileId },
+				success: function () {
+					button.textContent = "Add to favorites";
+					button.classList.remove("btn-danger");
+					button.classList.add("btn-primary");
+					button.onclick = function () { addFavourite(mobileId, button); };
+				}
 			});
 		}
 	</script>

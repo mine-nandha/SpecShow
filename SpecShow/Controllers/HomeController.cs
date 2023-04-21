@@ -70,7 +70,7 @@ namespace SpecShow.Controllers
 			{
 				return NotFound();
 			}
-
+			ViewBag.isExists =  _context.Favourites.SingleOrDefault(f => f.MobileID == id && f.UserID == HttpContext.Session.GetInt32("UserID")) != null;
 			return View(mobile);
 		}
 

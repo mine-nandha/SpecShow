@@ -8,7 +8,6 @@ namespace SpecShow.Models
     {
         [Key]
         public int FavouritesID { get; set; }
-
         [ForeignKey("User")]
         public int UserID { get; set; }
         public virtual User? User { get; set; }
